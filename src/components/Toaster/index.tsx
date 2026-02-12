@@ -3,7 +3,7 @@ import { avoidElementClassName } from "../../utils/classNames";
 import { ToastPlacement } from "../../utils/types";
 import CheckIcon from "../../icons/check";
 import CrossIcon from "../../icons/cross";
-import InfoIcon from "../../icons/info";
+import InfoIcon from "../../icons/info-filled";
 import clsx from "clsx";
 
 import "./styles.css";

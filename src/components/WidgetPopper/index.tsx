@@ -27,8 +27,8 @@ const WidgetPopper: React.FC = () => {
             style={{ ...floatingStyles, zIndex: 1000000 }}
             className={clsx(popoverElmentClassName, avoidElementClassName)}
         >
-            <WidgetForm />
             <FloatingArrow className="arrow" ref={arrowRef} context={context} />
+            <WidgetForm />
         </div>
     );
 };

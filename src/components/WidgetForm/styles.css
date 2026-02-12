@@ -3,7 +3,9 @@
     padding: 16px;
     max-width: 420px;
     border-radius: 8px;
-    background: var(--rrn-clr-100);
+    position: relative;
+    background: var(--rrn-clr-50);
+    border: 1px solid var(--rrn-clr-200);
     display: grid;
     gap: 8px;
 
