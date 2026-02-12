@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),  
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.3] - 2026-02-12
+
+### Added
+
+-   Island mode toggle with new `island.mode` option for switching between default and icon-only trigger.
+-   New pointer icon components: `SquareDashPointer` and `SquareSolidPointer`.
+-   Additional notification icons: Bulb, Gift, Info (filled and outline), Message, Percent, and Siren.
+-   Advanced notification customization, including repeat delay, display duration, and permanent dismissal settings.
+-   More granular screenshot configuration to control full-page and selected-element screenshots.
+
+### Changed
+
+-   Enhanced Notification component to support customizable messages and dismissal behavior.
+-   Improved screenshot capture flow with better element highlighting and outline in full-page screenshots.
+-   Updated README to clarify screenshot options and document the latest WidgetProvider and customize props.
+
+### Fixed
+
+-   Updated `WidgetForm` styles and adjusted arrow color in `WidgetPopper` for better visual consistency.
+-   Updated `InfoIcon` import to use the filled version for better readability.
+
+## [1.4.2] - 2025-09-21
+
+### Changed
+
+-   Bumped version to `1.4.2` for release (no functional changes).
+
 ## [1.4.1] - 2025-09-18
 
 ### Added
