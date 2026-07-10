@@ -94,9 +94,6 @@ export interface ReferralWidgetProps {
   backdropColor?: string;
 
   // BOXES
-  showRewardCode?: boolean;
-  rewardCodeLabel?: string;
-  rewardCodeStyle?: React.CSSProperties;
   showReferralLink?: boolean;
   referralLinkLabel?: string;
 

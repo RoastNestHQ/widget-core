@@ -28,8 +28,6 @@ const ReferralCard: React.FC<ReferralCardProps> = ({
   onCopyCode,
   onCopyLink,
   onShare,
-  showRewardCode,
-  rewardCodeLabel,
   showReferralLink,
   referralLinkLabel,
   copySuccessLabel,
@@ -56,24 +54,8 @@ const ReferralCard: React.FC<ReferralCardProps> = ({
       </p>
       
       <p className={CLASS_NAMES.referral.submessage} style={styles.mutedText}>
-        {rewardDescription || `Share your link below and both of you will get a ${rewardAmount} reward. Your friends just need to sign up using your link/code.`}
+        {rewardDescription || `Share your link below and both of you will get a ${rewardAmount} reward. Your friends just need to sign up using your link.`}
       </p>
-
-      {showRewardCode && (
-        <div className={CLASS_NAMES.referral.copyBlock}>
-          <div className={CLASS_NAMES.referral.copyLabel}>{rewardCodeLabel}</div>
-          <div className={CLASS_NAMES.referral.copyContent} style={styles.codeBox}>
-            <span className={CLASS_NAMES.referral.monoText}>{referralCode}</span>
-            <button 
-              className={`${CLASS_NAMES.referral.actionBtn} ${codeCopied ? CLASS_NAMES.referral.copied : ''}`}
-              style={codeCopied ? styles.copyBtnSuccess : styles.outlineBtn}
-              onClick={onCopyCode}
-            >
-              {codeCopied ? copySuccessLabel : 'Copy'}
-            </button>
-          </div>
-        </div>
-      )}
 
       {showReferralLink && (
         <div className={CLASS_NAMES.referral.copyBlock}>
@@ -115,7 +97,7 @@ const ReferralCard: React.FC<ReferralCardProps> = ({
 
       {showExpiry && expiryHours && (
         <div className={CLASS_NAMES.referral.expiryNote} style={styles.mutedText}>
-          Reward code expires in {expiryHours} hours.
+          Reward link expires in {expiryHours} hours.
         </div>
       )}
     </div>
