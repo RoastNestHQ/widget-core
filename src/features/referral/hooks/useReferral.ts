@@ -8,9 +8,8 @@ let apiInstance: ReferralAPI | null = null;
  * Main headless hook for open-source users to manage referral state and tracking.
  */
 export function useReferral(config: ReferralConfig) {
-  // Ensure singleton API instance
   if (!apiInstance || apiInstance.getConfig().projectId !== config.projectId) {
-    apiInstance = new ReferralAPI(config);
+    apiInstance = ReferralAPI.create(config);
     apiInstance.initialize();
   }
 

@@ -4,9 +4,18 @@ import { ReferralStorage } from "./core/ReferralStorage";
 import { VisitorManager } from "./core/VisitorManager";
 import { SessionManager } from "./core/SessionManager";
 import { EventQueue } from "./core/EventQueue";
-import { BaseTransport, ITransport, collectMetadata } from "./transport/BaseTransport";
+import { ITransport, collectMetadata } from "./transport/BaseTransport";
 import { CloudTransport } from "./transport/CloudTransport";
 import { SelfHostedTransport } from "./transport/SelfHostedTransport";
+
+export interface ReferralAPIDependencies {
+  detector: ReferralDetector;
+  storage: ReferralStorage;
+  visitorMgr: VisitorManager;
+  sessionMgr: SessionManager;
+  queue: EventQueue;
+  transport: ITransport;
+}
 
 export class ReferralAPI {
   private config: ReferralConfig;
@@ -17,24 +26,39 @@ export class ReferralAPI {
   private queue: EventQueue;
   private transport: ITransport;
 
-  constructor(config: ReferralConfig) {
+  constructor(config: ReferralConfig, deps: ReferralAPIDependencies) {
     if (!config.projectId) {
       throw new Error("Roastnest Referral SDK: projectId is required");
     }
-    
     this.config = config;
-    this.detector = new ReferralDetector(config.queryParam);
-    this.storage = new ReferralStorage(config.cookieDurationDays);
-    this.visitorMgr = new VisitorManager();
-    this.sessionMgr = new SessionManager();
-    this.queue = new EventQueue();
+    this.detector = deps.detector;
+    this.storage = deps.storage;
+    this.visitorMgr = deps.visitorMgr;
+    this.sessionMgr = deps.sessionMgr;
+    this.queue = deps.queue;
+    this.transport = deps.transport;
+  }
 
-    if (config.mode === "self-hosted") {
-      if (!config.endpoint) throw new Error("Self-hosted mode requires an endpoint");
-      this.transport = new SelfHostedTransport(config.endpoint);
-    } else {
-      this.transport = new CloudTransport();
+  /**
+   * Factory method to create an instance with all its dependencies.
+   */
+  static create(config: ReferralConfig): ReferralAPI {
+    if (!config.projectId) {
+      throw new Error("Roastnest Referral SDK: projectId is required");
     }
+
+    const transport = config.mode === "self-hosted"
+      ? new SelfHostedTransport(config.endpoint!)
+      : new CloudTransport();
+
+    return new ReferralAPI(config, {
+      detector: new ReferralDetector(config.queryParam),
+      storage: new ReferralStorage(config.cookieDurationDays),
+      visitorMgr: new VisitorManager(),
+      sessionMgr: new SessionManager(),
+      queue: new EventQueue(),
+      transport,
+    });
   }
 
   /**

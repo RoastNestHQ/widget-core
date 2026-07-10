@@ -1,10 +1,10 @@
-import { avoidElementClassName, buttonElmentClassName } from "../../../utils/classNames";
-import defaultRoastnestConfig from "../../../core/config/defaultCustomize";
-import useRoastnestContext from "../../../core/hooks/useRoastnestContext";
+import { avoidElementClassName, buttonElmentClassName } from "../../../../utils/classNames";
+import defaultRoastnestConfig from "../../../../core/config/defaultCustomize";
+import useRoastnestContext from "../../../../core/hooks/useRoastnestContext";
 import clsx from "clsx";
 import "./styles.css";
-import SquareSolidPointerIcon from "../../icons/SquareSolidPointer";
-import SquareDashPointerIcon from "../../icons/SquareDashPointer";
+import SquareSolidPointerIcon from "../../../../shared/icons/SquareSolidPointer";
+import SquareDashPointerIcon from "../../../../shared/icons/SquareDashPointer";
 
 function WidgetTriggerButton() {
     const { active, customize, toggleActive, IslandHidden } = useRoastnestContext();

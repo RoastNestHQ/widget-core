@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import WidgetTriggerButton from "../../shared/components/WidgetTriggerButton";
-import WidgetOverlay from "../../shared/components/WidgetOverlay";
+import WidgetTriggerButton from "./components/WidgetTriggerButton";
+import WidgetOverlay from "./components/WidgetOverlay";
 import FeedbackPopper from "./components/FeedbackPopper";
 import Notification from "../../shared/components/Notification";
 import { RoastnestContext } from "../../core/context";

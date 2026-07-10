@@ -71,7 +71,7 @@ export interface ReferralWidgetProps {
   // REQUIRED
   referralCode: string;
   referralLink: string;
-  projectId: string;
+  projectId?: string;
 
   // CONTENT
   appName?: string;

@@ -1,5 +1,5 @@
 import { FloatingArrow, arrow, autoPlacement, autoUpdate, offset, shift, useFloating } from "@floating-ui/react";
-import { activeElementClassName, avoidElementClassName, popoverElmentClassName } from "../../../utils/classNames";
+import { activeElementClassName, avoidElementClassName, popoverElmentClassName } from "../../../../utils/classNames";
 import { useState, useEffect, useRef } from "react";
 import "./styles.css";
 import clsx from "clsx";

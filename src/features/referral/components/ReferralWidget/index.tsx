@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import { RoastnestContext } from '../../../../core/context';
 import { ReferralWidgetProps } from './types';
 import { DEFAULT_WIDGET_PROPS } from './defaults';
 import { buildStyles } from './styles';
@@ -8,9 +9,16 @@ import ReferralPopup from '../ReferralPopup';
 import ReferralCard from '../ReferralCard';
 
 export const ReferralWidget: React.FC<ReferralWidgetProps> = (userProps) => {
-  const props = { ...DEFAULT_WIDGET_PROPS, ...userProps };
+  const context = useContext(RoastnestContext);
+  const effectiveProjectId = userProps.projectId || context?.siteId;
+
+  if (!effectiveProjectId) {
+    throw new Error("Roastnest Referral SDK: projectId is required either via props or RoastnestProvider");
+  }
+
+  const props = { ...DEFAULT_WIDGET_PROPS, ...userProps, projectId: effectiveProjectId };
   const styles = buildStyles(props.theme);
-  const widgetState = useReferralWidget(props);
+  const widgetState = useReferralWidget(props as ReferralWidgetProps & { projectId: string });
 
   useEffect(() => {
     props.onMount?.(props.projectId);

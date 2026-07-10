@@ -4,8 +4,16 @@ export interface ITransport {
   send(payload: ReferralEventPayload): Promise<void>;
 }
 
-export function collectMetadata(): Record<string, string> {
-  if (typeof window === "undefined") return {};
+export function collectMetadata() {
+  if (typeof window === "undefined") {
+    return {
+      currentPage: "",
+      referrerUrl: "",
+      browser: "",
+      os: "",
+      device: "",
+    };
+  }
   
   return {
     currentPage: window.location.href,

@@ -64,7 +64,7 @@ export function useReferralLifecycle() {
   const [currentStage, setCurrentStage] = useState<number | null>(null);
   const [isRunning, setIsRunning] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const updateStageStatus = (index: number, status: LifecycleStage['status']) => {
     setStages(prev => {

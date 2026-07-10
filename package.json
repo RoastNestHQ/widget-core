@@ -1,11 +1,11 @@
 {
   "version": "1.4.3",
-  "name": "roastnest",
-  "description": "A React widget to get feedback",
+  "name": "@roastnest/react",
+  "description": "A RoastNest widget for honest feedback",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "author": "satyamskillz",
+  "author": "RoastNestHQ",
   "license": "MIT",
   "private": false,
   "scripts": {
@@ -38,7 +38,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/satyamskillz/react-roast.git"
+    "url": "git+https://github.com/RoastNestHQ/widget-core.git"
   },
   "keywords": [
     "react",
