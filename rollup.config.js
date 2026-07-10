@@ -16,13 +16,17 @@ export default [
 		input: "src/index.ts",
 		output: [
 			{
-				file: packageJson.main,
+				dir: "dist",
+				entryFileNames: "index.js",
+				chunkFileNames: "chunks/[name]-[hash].js",
 				format: "cjs",
 				sourcemap: !isProduction,
 				exports: "named",
 			},
 			{
-				file: packageJson.module,
+				dir: "dist",
+				entryFileNames: "index.mjs",
+				chunkFileNames: "chunks/[name]-[hash].mjs",
 				format: "esm",
 				sourcemap: !isProduction,
 				exports: "named",
