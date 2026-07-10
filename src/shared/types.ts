@@ -95,38 +95,24 @@ export interface RoastnestCustomizeProps {
 export interface RoastnestContextType {
     mode?: "local" | "remote";
     userData?: User;
-    active: boolean;
-    siteId?: string;
-    windowSize: Size;
-    IslandHidden: boolean;
-    selected: SelectedElement;
+    projectId?: string;
     setUser: (user: User) => void;
-    screenshotBlobs: ScreenshotBlobs;
-    customize?: RoastnestCustomizeProps | undefined;
-    onFormSubmit?: FormSubmitHandler;
-    toggleActive: () => void;
-    unSelectElement: () => void;
-    setIslandVisiblity: (visible: boolean) => void;
 }
 
 // Widget Provider
 
 export interface BaseRoastnestProviderProps {
-    customize?: RoastnestCustomizeProps;
-    hideIsland?: boolean;
     children: ReactNode;
 }
 
 export interface LocalRoastnestProviderProps extends BaseRoastnestProviderProps {
     mode: "local";
-    siteId?: never;
-    onFormSubmit: FormSubmitHandler;
+    projectId?: string;
 }
 
 export interface RemoteRoastnestProviderProps extends BaseRoastnestProviderProps {
-    siteId: string;
+    projectId: string;
     mode?: "remote";
-    onFormSubmit?: never;
 }
 
 export type RoastnestProviderProps = LocalRoastnestProviderProps | RemoteRoastnestProviderProps;

@@ -71,7 +71,7 @@ export interface ReferralWidgetProps {
   // REQUIRED
   referralCode: string;
   referralLink: string;
-  projectId?: string;
+
 
   // CONTENT
   appName?: string;
@@ -84,7 +84,8 @@ export interface ReferralWidgetProps {
   // BUTTON
   buttonLabel?: string;
   buttonIcon?: React.ReactNode;
-  buttonPosition?: "bottom-right" | "bottom-left" | "bottom-center";
+  buttonPosition?: "left-center" | "left-bottom" | "right-center" | "right-bottom" | "bottom-left" | "bottom-right" | "bottom-center";
+  buttonMode?: "icon" | "text" | "both";
   buttonStyle?: React.CSSProperties;
 
   // POPUP

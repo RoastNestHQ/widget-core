@@ -4,7 +4,7 @@ import { ReferralWidgetProps } from "../components/ReferralWidget/types";
 /**
  * Widget state hook.
  */
-export function useReferralWidget(props: ReferralWidgetProps) {
+export function useReferralWidget(props: ReferralWidgetProps & { projectId: string }) {
   const [isOpen, setIsOpen] = useState(!!props.defaultOpen || !!props.visible);
   const [codeCopied, setCodeCopied] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);

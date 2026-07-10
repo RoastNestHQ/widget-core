@@ -3,7 +3,7 @@ import { autoPlacement, autoUpdate, offset, shift, useFloating, Placement } from
 import defaultRoastnestConfig from "../../../core/config/defaultCustomize";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { NotificationMessage } from "../../types";
-import useRoastnestContext from "../../../core/hooks/useRoastnestContext";
+import useFeedbackContext from "../../../features/feedback/hooks/useFeedbackContext";
 import clsx from "clsx";
 import "./styles.css";
 
@@ -29,7 +29,7 @@ const Notification: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     // Roast widget context
-    const { customize, active, IslandHidden } = useRoastnestContext();
+    const { customize, active, IslandHidden } = useFeedbackContext();
 
     // Do not render if island is hidden
     if (IslandHidden) return null;

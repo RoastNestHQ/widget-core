@@ -10,10 +10,10 @@ import ReferralCard from '../ReferralCard';
 
 export const ReferralWidget: React.FC<ReferralWidgetProps> = (userProps) => {
   const context = useContext(RoastnestContext);
-  const effectiveProjectId = userProps.projectId || context?.siteId;
+  const effectiveProjectId = context?.projectId;
 
   if (!effectiveProjectId) {
-    throw new Error("Roastnest Referral SDK: projectId is required either via props or RoastnestProvider");
+    throw new Error("Roastnest Referral SDK: projectId is required via RoastnestProvider");
   }
 
   const props = { ...DEFAULT_WIDGET_PROPS, ...userProps, projectId: effectiveProjectId };
@@ -67,6 +67,7 @@ export const ReferralWidget: React.FC<ReferralWidgetProps> = (userProps) => {
         onClick={widgetState.open}
         label={props.buttonLabel}
         icon={props.buttonIcon}
+        mode={props.buttonMode}
         style={props.buttonStyle}
         themeStyles={styles}
       />

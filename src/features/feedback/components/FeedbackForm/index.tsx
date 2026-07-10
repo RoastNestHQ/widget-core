@@ -1,5 +1,6 @@
 import defaultRoastnestConfig from "../../../../core/config/defaultCustomize";
 import useRoastnestContext from "../../../../core/hooks/useRoastnestContext";
+import useFeedbackContext from "../../hooks/useFeedbackContext";
 import PersonManager from "../../../../core/PersonManager";
 import ApiInstance from "../../../../shared/utils/api";
 import CheckIcon from "../../../../shared/icons/check";
@@ -12,7 +13,8 @@ import clsx from "clsx";
 import "./styles.css";
 
 const FeedbackForm: React.FC = () => {
-    const { mode, customize, siteId, userData, screenshotBlobs, onFormSubmit, unSelectElement } = useRoastnestContext();
+    const { mode, projectId, userData } = useRoastnestContext();
+    const { customize, screenshotBlobs, onFormSubmit, unSelectElement } = useFeedbackContext();
 
     const [trackingUrl, setTrackingUrl] = useState<string | null>(null);
     const [isLoading, setLoading] = useState(false);
@@ -48,15 +50,15 @@ const FeedbackForm: React.FC = () => {
             return;
         }
 
-        if (!siteId) {
-            console.error("siteId is required");
+        if (!projectId) {
+            console.error("projectId is required");
             return;
         }
 
         let user = { email, ...userData };
 
         setLoading(true);
-        const api = new ApiInstance({ siteId });
+        const api = new ApiInstance({ siteId: projectId });
         const response = await api.sendRoast({ message, user, screenshotBlobs });
 
         if (response.success) {

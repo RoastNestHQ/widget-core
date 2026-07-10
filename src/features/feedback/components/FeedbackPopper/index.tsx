@@ -1,10 +1,10 @@
 import React from "react";
 import WidgetPopper from "../WidgetPopper";
 import FeedbackForm from "../FeedbackForm";
-import useRoastnestContext from "../../../../core/hooks/useRoastnestContext";
+import useFeedbackContext from "../../hooks/useFeedbackContext";
 
 const FeedbackPopper: React.FC = () => {
-    const { active, selected } = useRoastnestContext();
+    const { active, selected } = useFeedbackContext();
 
     if (!active || !selected.isSelected) return null;
 

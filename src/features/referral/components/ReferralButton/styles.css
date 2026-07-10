@@ -1,34 +1,11 @@
-.rrn-referral-btn {
-  position: fixed;
-  bottom: 24px;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background-color: #000;
-  color: #fff;
-  border: none;
-  cursor: pointer;
+/* Override rrn-island-button styles for referral icon mode */
+.rrn-referral-btn[data-mode="icon"] {
+  border-radius: 50% !important;
+  width: 48px;
+  height: 48px;
+  padding: 0 !important;
   display: flex;
-  align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  z-index: 9999;
-}
-
-.rrn-referral-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-
-.rrn-referral-btn:active {
-  transform: scale(0.95);
-}
-
-.rrn-referral-btn-bottom-right {
-  right: 24px;
-}
-
-.rrn-referral-btn-bottom-left {
-  left: 24px;
+  align-items: center;
+  margin: 16px !important;
 }

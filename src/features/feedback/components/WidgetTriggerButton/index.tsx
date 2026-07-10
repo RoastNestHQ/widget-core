@@ -1,13 +1,13 @@
 import { avoidElementClassName, buttonElmentClassName } from "../../../../utils/classNames";
 import defaultRoastnestConfig from "../../../../core/config/defaultCustomize";
-import useRoastnestContext from "../../../../core/hooks/useRoastnestContext";
+import useFeedbackContext from "../../hooks/useFeedbackContext";
 import clsx from "clsx";
 import "./styles.css";
 import SquareSolidPointerIcon from "../../../../shared/icons/SquareSolidPointer";
 import SquareDashPointerIcon from "../../../../shared/icons/SquareDashPointer";
 
 function WidgetTriggerButton() {
-    const { active, customize, toggleActive, IslandHidden } = useRoastnestContext();
+    const { active, customize, toggleActive, IslandHidden } = useFeedbackContext();
 
     if (IslandHidden) return null;
 

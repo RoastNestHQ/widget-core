@@ -1,11 +1,11 @@
 import { overlayElmentClassName } from "../../../../utils/classNames";
-import useRoastnestContext from "../../../../core/hooks/useRoastnestContext";
+import useFeedbackContext from "../../hooks/useFeedbackContext";
 
 const padding = 8;
 const borderRadius = 4;
 
 export default function WidgetOverlay() {
-    const { active, selected, windowSize } = useRoastnestContext();
+    const { active, selected, windowSize } = useFeedbackContext();
 
     if (!active || !selected.isSelected) return null;
 
