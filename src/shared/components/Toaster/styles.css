@@ -20,7 +20,7 @@
     }
 }
 
-.rrn-toaster {
+.rrn-global-toaster {
     position: fixed;
     z-index: 999999;
 
@@ -52,7 +52,7 @@
     }
 }
 
-.rrn-toaster_toast {
+.rrn-global-toaster-toast {
     z-index: 99999;
     color: black;
     padding: 12px 12px;
@@ -96,7 +96,7 @@
     }
 }
 
-.rrn-toaster_toast_icon {
+.rrn-global-toaster-icon {
     font-size: 16px;
     width: fit-content;
     height: fit-content;
@@ -107,12 +107,12 @@
     }
 }
 
-.rrn-toaster_toast_message {
+.rrn-global-toaster-message {
     flex-grow: 1;
     overflow-wrap: break-word;
 }
 
-.rrn-toaster_toast_close_btn {
+.rrn-global-toaster-close-btn {
     border: none;
     color: black;
     font-size: 12px;

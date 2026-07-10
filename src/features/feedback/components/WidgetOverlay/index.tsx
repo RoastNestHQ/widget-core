@@ -1,4 +1,4 @@
-import { overlayElmentClassName } from "../../../../utils/classNames";
+import { CLASS_NAMES } from '../../../../utils/classNames';
 import useFeedbackContext from "../../hooks/useFeedbackContext";
 
 const padding = 8;
@@ -40,7 +40,7 @@ export default function WidgetOverlay() {
                 height="100%"
                 version="1.1"
                 xmlSpace="preserve"
-                className={overlayElmentClassName}
+                className={CLASS_NAMES.feedback.overlay}
                 xmlns="http://www.w3.org/2000/svg"
                 preserveAspectRatio="xMinYMin slice"
                 viewBox={`0 0 ${width} ${height}`}

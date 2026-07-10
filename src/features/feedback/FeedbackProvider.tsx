@@ -7,13 +7,7 @@ import { FormSubmitHandler, FeedbackCustomizeProps } from "./types";
 import { FeedbackContext } from "./context";
 import { ToastProvider } from "../../shared/components/Toaster";
 
-import {
-    activeElementClassName,
-    avoidElementClassName,
-    buttonElmentClassName,
-    overlayElmentClassName,
-    popoverElmentClassName,
-} from "../../utils/classNames";
+import { CLASS_NAMES } from '../../utils/classNames';
 import defaultFeedbackConfig from "../../core/config/defaultFeedbackConfig";
 
 const initialSelectedValue: SelectedElement = {
@@ -54,7 +48,7 @@ export function FeedbackProvider({
         []
     );
 
-    const setIslandVisiblity = useCallback((v: boolean) => setIslandHidden(!v), []);
+    const setIslandVisibility = useCallback((v: boolean) => setIslandHidden(!v), []);
 
     useEffect(() => {
         if (hideIsland) setIslandHidden(true);
@@ -79,7 +73,7 @@ export function FeedbackProvider({
 
     const takeScreenshot = async (element: HTMLElement) => {
         const backgroundColor = getBackgroundColor(element);
-        const ignoreElementClassNames = [popoverElmentClassName, buttonElmentClassName, overlayElmentClassName];
+        const ignoreElementClassNames = [CLASS_NAMES.feedback.popover, CLASS_NAMES.feedback.islandButton, CLASS_NAMES.feedback.overlay];
 
         const excludeFullPageScreenshot =
             customize?.form?.output?.excludeFullPageScreenshot ||
@@ -132,11 +126,11 @@ export function FeedbackProvider({
 
     useEffect(() => {
         if (!active) {
-            document.body.classList.remove("rrn-feedback-active");
+            document.body.classList.remove(CLASS_NAMES.feedback.active);
             return;
         }
         
-        document.body.classList.add("rrn-feedback-active");
+        document.body.classList.add(CLASS_NAMES.feedback.active);
 
         const handleResize = () => {
             setWindowSize({
@@ -151,7 +145,7 @@ export function FeedbackProvider({
         window.addEventListener("scroll", handleScroll);
         window.addEventListener("resize", handleResize);
         return () => {
-            document.body.classList.remove("rrn-feedback-active");
+            document.body.classList.remove(CLASS_NAMES.feedback.active);
             window.removeEventListener("resize", handleResize);
             window.removeEventListener("scroll", handleScroll);
         };
@@ -160,7 +154,7 @@ export function FeedbackProvider({
     useEffect(() => {
         if (!active) return;
 
-        const ignoredClassNames = [avoidElementClassName];
+        const ignoredClassNames = [CLASS_NAMES.global.avoidElement];
 
         const isInsideIgnored = (el: HTMLElement | null) => {
             if (!el) return false;
@@ -176,7 +170,7 @@ export function FeedbackProvider({
             e.preventDefault();
             e.stopPropagation();
 
-            if (document.querySelector(`.${overlayElmentClassName}`)?.contains(currentElement)) {
+            if (document.querySelector(`.${CLASS_NAMES.feedback.overlay}`)?.contains(currentElement)) {
                 unSelectElement();
                 return;
             }
@@ -190,8 +184,8 @@ export function FeedbackProvider({
 
             setElementHoverable(false);
 
-            document.querySelector(`.${activeElementClassName}`)?.classList.remove(activeElementClassName);
-            currentElement.classList.add(activeElementClassName);
+            document.querySelector(`.${CLASS_NAMES.feedback.selectedElement}`)?.classList.remove(CLASS_NAMES.feedback.selectedElement);
+            currentElement.classList.add(CLASS_NAMES.feedback.selectedElement);
 
             await takeScreenshot(currentElement);
         };
@@ -201,7 +195,7 @@ export function FeedbackProvider({
     }, [active, unSelectElement]);
 
     const updateSelectedElement = () => {
-        const element = document.querySelector(`.${activeElementClassName}`) as HTMLElement | null;
+        const element = document.querySelector(`.${CLASS_NAMES.feedback.selectedElement}`) as HTMLElement | null;
         if (!element) return;
 
         const rect = element.getBoundingClientRect();
@@ -224,7 +218,7 @@ export function FeedbackProvider({
                 toggleActive,
                 unSelectElement,
                 screenshotBlobs,
-                setIslandVisiblity,
+                setIslandVisibility,
             }}
         >
             <ToastProvider

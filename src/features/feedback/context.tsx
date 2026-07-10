@@ -12,7 +12,7 @@ export interface FeedbackContextType {
     onFormSubmit?: FormSubmitHandler;
     toggleActive: () => void;
     unSelectElement: () => void;
-    setIslandVisiblity: (visible: boolean) => void;
+    setIslandVisibility: (visible: boolean) => void;
 }
 
 export const FeedbackContext = createContext<FeedbackContextType | undefined>(undefined);

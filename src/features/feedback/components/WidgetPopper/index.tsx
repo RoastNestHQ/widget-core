@@ -1,5 +1,5 @@
 import { FloatingArrow, arrow, autoPlacement, autoUpdate, offset, shift, useFloating } from "@floating-ui/react";
-import { activeElementClassName, avoidElementClassName, popoverElmentClassName } from "../../../../utils/classNames";
+import { CLASS_NAMES } from '../../../../utils/classNames';
 import { useState, useEffect, useRef } from "react";
 import "./styles.css";
 import clsx from "clsx";
@@ -9,7 +9,7 @@ const WidgetPopper: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(null);
 
     useEffect(() => {
-        const element = document.querySelector(`.${activeElementClassName}`) as HTMLElement | null;
+        const element = document.querySelector(`.${CLASS_NAMES.feedback.selectedElement}`) as HTMLElement | null;
         setReferenceElement(element);
     }, []);
 
@@ -24,7 +24,7 @@ const WidgetPopper: React.FC<{ children: React.ReactNode }> = ({ children }) => 
             ref={refs.setFloating}
             data-placement={placement}
             style={{ ...floatingStyles, zIndex: 1000000 }}
-            className={clsx(popoverElmentClassName, avoidElementClassName)}
+            className={clsx(CLASS_NAMES.feedback.popover, CLASS_NAMES.global.avoidElement)}
         >
             <FloatingArrow className="arrow" ref={arrowRef} context={context} />
             {children}

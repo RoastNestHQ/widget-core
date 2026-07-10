@@ -13,7 +13,7 @@
   margin-bottom: 8px;
 }
 
-.rrn-app-icon {
+.rrn-referral-app-icon {
   width: 40px;
   height: 40px;
   background-color: #f5f5f5;
@@ -24,7 +24,7 @@
   color: #333;
 }
 
-.rrn-app-name {
+.rrn-referral-app-name {
   margin: 0;
   font-size: 20px;
   font-weight: 700;
@@ -37,7 +37,7 @@
   line-height: 1.4;
 }
 
-.rrn-referrer-name {
+.rrn-referral-referrer-name {
   color: #000;
 }
 
@@ -48,18 +48,18 @@
   line-height: 1.5;
 }
 
-.rrn-reward-amount {
+.rrn-referral-reward-amount {
   font-weight: 700;
   color: #000;
 }
 
-.rrn-copy-block {
+.rrn-referral-copy-block {
   border: 1px solid #eaeaea;
   border-radius: 8px;
   overflow: hidden;
 }
 
-.rrn-copy-label {
+.rrn-referral-copy-label {
   background-color: #f9f9f9;
   padding: 8px 12px;
   font-size: 12px;
@@ -70,7 +70,7 @@
   letter-spacing: 0.5px;
 }
 
-.rrn-copy-content {
+.rrn-referral-copy-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -79,11 +79,11 @@
   gap: 12px;
 }
 
-.rrn-code-content {
+.rrn-referral-code-content {
   background-color: #fdfae5; /* light yellow */
 }
 
-.rrn-mono-text {
+.rrn-referral-mono-text {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-weight: 700;
   font-size: 16px;
@@ -91,7 +91,7 @@
   color: #000;
 }
 
-.rrn-link-text {
+.rrn-referral-link-text {
   font-size: 14px;
   color: #3b82f6;
   white-space: nowrap;
@@ -100,12 +100,12 @@
   cursor: pointer;
 }
 
-.rrn-link-text:hover {
+.rrn-referral-link-text:hover {
   white-space: normal;
   word-break: break-all;
 }
 
-.rrn-action-btn {
+.rrn-referral-action-btn {
   background: #f0f0f0;
   border: none;
   border-radius: 6px;
@@ -118,22 +118,22 @@
   white-space: nowrap;
 }
 
-.rrn-action-btn:hover {
+.rrn-referral-action-btn:hover {
   background: #e0e0e0;
 }
 
-.rrn-action-btn.rrn-copied {
+.rrn-referral-action-btn.rrn-referral-copied {
   background: #10b981;
   color: #fff;
 }
 
-.rrn-actions-row {
+.rrn-referral-actions-row {
   display: flex;
   gap: 12px;
   margin-top: 8px;
 }
 
-.rrn-primary-btn, .rrn-secondary-btn {
+.rrn-referral-primary-btn, .rrn-referral-secondary-btn {
   flex: 1;
   display: flex;
   align-items: center;
@@ -148,21 +148,21 @@
   transition: opacity 0.2s;
 }
 
-.rrn-primary-btn {
+.rrn-referral-primary-btn {
   background-color: #000;
   color: #fff;
 }
 
-.rrn-secondary-btn {
+.rrn-referral-secondary-btn {
   background-color: #f0f0f0;
   color: #333;
 }
 
-.rrn-primary-btn:hover, .rrn-secondary-btn:hover {
+.rrn-referral-primary-btn:hover, .rrn-referral-secondary-btn:hover {
   opacity: 0.9;
 }
 
-.rrn-expiry-note {
+.rrn-referral-expiry-note {
   text-align: center;
   font-size: 12px;
   color: #888;

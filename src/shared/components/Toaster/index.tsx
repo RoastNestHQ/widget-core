@@ -1,5 +1,5 @@
 import { createContext, useState, useCallback, useEffect, ReactNode } from "react";
-import { avoidElementClassName } from "../../../utils/classNames";
+import { CLASS_NAMES } from '../../../utils/classNames';
 import { ToastPlacement } from "../../types";
 import CheckIcon from "../../icons/check";
 import CrossIcon from "../../icons/cross";
@@ -85,20 +85,20 @@ export function ToastProvider({ children, position = "top-right", max = 3 }: Toa
     return (
         <ToastContext.Provider value={{ show }}>
             {children}
-            <div className={clsx("rrn-toaster", avoidElementClassName)} data-position={position}>
+            <div className={clsx(CLASS_NAMES.global.toaster, CLASS_NAMES.global.avoidElement)} data-position={position}>
                 {toasts.map((toast) => (
                     <div
                         key={toast.id}
                         data-type={toast.type}
-                        className="rrn-toaster_toast"
+                        className={CLASS_NAMES.global.toasterToast}
                         data-animation={toast.closing ? "fade-out" : "fade-in"}
                     >
-                        <span className="rrn-toaster_toast_icon">{toast.icon ?? getDefaultIcon(toast.type)}</span>
-                        <div className="rrn-toaster_toast_message">
+                        <span className={CLASS_NAMES.global.toasterIcon}>{toast.icon ?? getDefaultIcon(toast.type)}</span>
+                        <div className={CLASS_NAMES.global.toasterMessage}>
                             {typeof toast.msg === "string" ? <span>{toast.msg}</span> : toast.msg}
                         </div>
                         <button
-                            className="rrn-toaster_toast_close_btn"
+                            className={CLASS_NAMES.global.toasterCloseBtn}
                             onClick={() => removeToast(toast.id)}
                             aria-label="Dismiss"
                         >

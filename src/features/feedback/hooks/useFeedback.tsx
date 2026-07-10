@@ -1,13 +1,13 @@
-import { avoidElementClassName } from "../../../utils/classNames";
+import { CLASS_NAMES } from '../../../utils/classNames';
 import useFeedbackContext from "./useFeedbackContext";
 
 export function useFeedback() {
-    const { active, toggleActive, setIslandVisiblity } = useFeedbackContext();
+    const { active, toggleActive, setIslandVisibility } = useFeedbackContext();
 
     return {
-        isWidgetActive: active,
-        toggleWidget: toggleActive,
-        avoidElementClassName,
-        setIslandVisiblity,
+        isFeedbackOpen: active,
+        toggleFeedback: toggleActive,
+        avoidElementClassName: CLASS_NAMES.global.avoidElement,
+        setIslandVisibility,
     };
 }

@@ -19,7 +19,7 @@
 }
 
 /* when roast widget is active, avoid element will not be highlighted */
-[data-roast-active="true"] .rrn-avoid-element {
+[data-roast-active="true"] .rrn-global-avoid-element {
 	outline: none !important;
 	* {
 		outline: none !important;

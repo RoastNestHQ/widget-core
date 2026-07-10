@@ -1,3 +1,4 @@
+import { CLASS_NAMES } from '../utils/classNames';
 interface Person {
     id: string; // Unique identifier for the person
     hasEmail: boolean; // Optional flag to indicate if the person has an email
@@ -6,7 +7,7 @@ interface Person {
 class PersonManager {
     private storageKey: string;
     constructor() {
-        this.storageKey = "rrn-person-data";
+        this.storageKey = CLASS_NAMES.referral.personData;
     }
 
     getDetails(): Person | undefined {

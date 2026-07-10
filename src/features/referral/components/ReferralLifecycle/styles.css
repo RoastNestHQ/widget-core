@@ -1,4 +1,4 @@
-.rrn-lifecycle-container {
+.rrn-referral-lifecycle-container {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   max-width: 600px;
   margin: 0 auto;
@@ -9,7 +9,7 @@
   color: #111111;
 }
 
-.rrn-lifecycle-header {
+.rrn-referral-lifecycle-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,18 +18,18 @@
   border-bottom: 1px solid #e5e7eb;
 }
 
-.rrn-lifecycle-title {
+.rrn-referral-lifecycle-title {
   margin: 0;
   font-size: 20px;
   font-weight: 600;
 }
 
-.rrn-lifecycle-actions {
+.rrn-referral-lifecycle-actions {
   display: flex;
   gap: 12px;
 }
 
-.rrn-lifecycle-btn {
+.rrn-referral-lifecycle-btn {
   padding: 8px 16px;
   border-radius: 6px;
   font-weight: 500;
@@ -39,30 +39,30 @@
   transition: all 0.2s;
 }
 
-.rrn-lifecycle-btn-primary {
+.rrn-referral-lifecycle-btn-primary {
   background: #2563eb;
   color: white;
 }
 
-.rrn-lifecycle-btn-primary:hover {
+.rrn-referral-lifecycle-btn-primary:hover {
   background: #1d4ed8;
 }
 
-.rrn-lifecycle-btn-secondary {
+.rrn-referral-lifecycle-btn-secondary {
   background: #f3f4f6;
   color: #374151;
 }
 
-.rrn-lifecycle-btn-secondary:hover {
+.rrn-referral-lifecycle-btn-secondary:hover {
   background: #e5e7eb;
 }
 
-.rrn-stages-list {
+.rrn-referral-stages-list {
   position: relative;
   padding-left: 20px;
 }
 
-.rrn-stage-item {
+.rrn-referral-stage-item {
   position: relative;
   padding-bottom: 24px;
   padding-left: 24px;
@@ -70,11 +70,11 @@
   transition: opacity 0.3s;
 }
 
-.rrn-stage-item:last-child {
+.rrn-referral-stage-item:last-child {
   padding-bottom: 0;
 }
 
-.rrn-stage-connector {
+.rrn-referral-stage-connector {
   position: absolute;
   top: 24px;
   bottom: 0;
@@ -83,11 +83,11 @@
   background: #e5e7eb;
 }
 
-.rrn-stage-item:last-child .rrn-stage-connector {
+.rrn-referral-stage-item:last-child .rrn-referral-stage-connector {
   display: none;
 }
 
-.rrn-stage-indicator {
+.rrn-referral-stage-indicator {
   position: absolute;
   left: -14px;
   top: 2px;
@@ -100,29 +100,29 @@
 }
 
 /* Status variants */
-.rrn-stage-active {
+.rrn-referral-stage-active {
   opacity: 1;
 }
-.rrn-stage-active .rrn-stage-indicator {
+.rrn-referral-stage-active .rrn-referral-stage-indicator {
   background: #3b82f6;
   animation: pulse 1.5s infinite;
 }
 
-.rrn-stage-complete {
+.rrn-referral-stage-complete {
   opacity: 1;
 }
-.rrn-stage-complete .rrn-stage-indicator {
+.rrn-referral-stage-complete .rrn-referral-stage-indicator {
   background: #10b981;
 }
 
-.rrn-stage-failed {
+.rrn-referral-stage-failed {
   opacity: 1;
 }
-.rrn-stage-failed .rrn-stage-indicator {
+.rrn-referral-stage-failed .rrn-referral-stage-indicator {
   background: #ef4444;
 }
 
-.rrn-stage-content {
+.rrn-referral-stage-content {
   background: #f9fafb;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
@@ -130,24 +130,24 @@
   margin-top: 4px;
 }
 
-.rrn-stage-active .rrn-stage-content {
+.rrn-referral-stage-active .rrn-referral-stage-content {
   border-color: #bfdbfe;
   box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
 }
 
-.rrn-stage-title {
+.rrn-referral-stage-title {
   margin: 0 0 4px 0;
   font-size: 16px;
   font-weight: 600;
 }
 
-.rrn-stage-desc {
+.rrn-referral-stage-desc {
   margin: 0 0 12px 0;
   font-size: 14px;
   color: #6b7280;
 }
 
-.rrn-stage-snippet {
+.rrn-referral-stage-snippet {
   background: #111827;
   color: #f3f4f6;
   padding: 12px;
@@ -159,19 +159,19 @@
   white-space: pre-wrap;
 }
 
-.rrn-split-cards {
+.rrn-referral-split-cards {
   display: flex;
   gap: 16px;
   margin-top: 12px;
 }
 
 @media (max-width: 600px) {
-  .rrn-split-cards {
+  .rrn-referral-split-cards {
     flex-direction: column;
   }
 }
 
-.rrn-subcard {
+.rrn-referral-subcard {
   flex: 1;
   background: white;
   border: 1px solid #e5e7eb;
@@ -179,7 +179,7 @@
   padding: 12px;
 }
 
-.rrn-subcard h4 {
+.rrn-referral-subcard h4 {
   margin: 0 0 8px 0;
   font-size: 13px;
   color: #4b5563;
@@ -187,14 +187,14 @@
   letter-spacing: 0.5px;
 }
 
-.rrn-subcard p {
+.rrn-referral-subcard p {
   margin: 0;
   font-size: 14px;
   color: #111111;
   font-weight: 500;
 }
 
-.rrn-success-banner {
+.rrn-referral-success-banner {
   background: #dcfce7;
   color: #166534;
   padding: 12px;

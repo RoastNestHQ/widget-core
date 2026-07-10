@@ -1,3 +1,4 @@
+import { CLASS_NAMES } from '../../../../utils/classNames';
 import defaultFeedbackConfig from "../../../../core/config/defaultFeedbackConfig";
 import useRoastnestContext from "../../../../core/hooks/useRoastnestContext";
 import useFeedbackContext from "../../hooks/useFeedbackContext";
@@ -90,7 +91,7 @@ const FeedbackForm: React.FC = () => {
     const cancelButtonLabel = customize?.form?.cancelButton?.label || defaultFeedbackConfig?.form?.cancelButton?.label;
 
     return trackingUrl ? (
-        <div className={clsx("rrn-form-success")}>
+        <div className={clsx(CLASS_NAMES.feedback.formSuccess)}>
             <div className="content-group">
                 <CheckIcon />
                 <p>Thanks for the feedback!</p>
@@ -105,7 +106,7 @@ const FeedbackForm: React.FC = () => {
             </div>
         </div>
     ) : (
-        <form className={clsx("rrn-form", customize?.form?.className)} onSubmit={handleSubmit}>
+        <form className={clsx(CLASS_NAMES.feedback.form, customize?.form?.className)} onSubmit={handleSubmit}>
             <div className="form-inputs">
                 <Textarea
                     className={customize?.form?.messageInput?.className}

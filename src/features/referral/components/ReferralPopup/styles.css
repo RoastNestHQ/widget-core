@@ -14,11 +14,11 @@
   transition: opacity 0.2s ease;
 }
 
-.rrn-referral-backdrop.rrn-open {
+.rrn-referral-backdrop.rrn-global-open {
   opacity: 1;
 }
 
-.rrn-referral-backdrop.rrn-closed {
+.rrn-referral-backdrop.rrn-global-closed {
   opacity: 0;
 }
 
@@ -34,7 +34,7 @@
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.rrn-referral-modal.rrn-open {
+.rrn-referral-modal.rrn-global-open {
   transform: translateY(0) scale(1);
 }
 

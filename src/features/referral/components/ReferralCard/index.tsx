@@ -1,3 +1,4 @@
+import { CLASS_NAMES } from '../../../../utils/classNames';
 import React from 'react';
 import './styles.css';
 import { StyleMap } from '../ReferralWidget/styles';
@@ -40,31 +41,31 @@ const ReferralCard: React.FC<ReferralCardProps> = ({
   const name = referrerName || 'A friend';
   
   return (
-    <div className="rrn-referral-card">
-      <div className="rrn-referral-header">
+    <div className={CLASS_NAMES.referral.card}>
+      <div className={CLASS_NAMES.referral.header}>
         {appIcon && (
-          <div className="rrn-app-icon">
+          <div className={CLASS_NAMES.referral.appIcon}>
             {appIcon}
           </div>
         )}
-        <h2 className="rrn-app-name" style={styles.mutedText}>{appName}</h2>
+        <h2 className={CLASS_NAMES.referral.appName} style={styles.mutedText}>{appName}</h2>
       </div>
 
-      <p className="rrn-referral-message" style={styles.mutedText}>
-        <span className="rrn-referrer-name" style={styles.link}>{name}</span> invited you to {appName}!
+      <p className={CLASS_NAMES.referral.message} style={styles.mutedText}>
+        <span className={CLASS_NAMES.referral.referrerName} style={styles.link}>{name}</span> invited you to {appName}!
       </p>
       
-      <p className="rrn-referral-submessage" style={styles.mutedText}>
+      <p className={CLASS_NAMES.referral.submessage} style={styles.mutedText}>
         {rewardDescription || `Share your link below and both of you will get a ${rewardAmount} reward. Your friends just need to sign up using your link/code.`}
       </p>
 
       {showRewardCode && (
-        <div className="rrn-copy-block">
-          <div className="rrn-copy-label">{rewardCodeLabel}</div>
-          <div className="rrn-copy-content" style={styles.codeBox}>
-            <span className="rrn-mono-text">{referralCode}</span>
+        <div className={CLASS_NAMES.referral.copyBlock}>
+          <div className={CLASS_NAMES.referral.copyLabel}>{rewardCodeLabel}</div>
+          <div className={CLASS_NAMES.referral.copyContent} style={styles.codeBox}>
+            <span className={CLASS_NAMES.referral.monoText}>{referralCode}</span>
             <button 
-              className={`rrn-action-btn ${codeCopied ? 'rrn-copied' : ''}`}
+              className={`${CLASS_NAMES.referral.actionBtn} ${codeCopied ? CLASS_NAMES.referral.copied : ''}`}
               style={codeCopied ? styles.copyBtnSuccess : styles.outlineBtn}
               onClick={onCopyCode}
             >
@@ -75,12 +76,12 @@ const ReferralCard: React.FC<ReferralCardProps> = ({
       )}
 
       {showReferralLink && (
-        <div className="rrn-copy-block">
-          <div className="rrn-copy-label">{referralLinkLabel}</div>
-          <div className="rrn-copy-content" style={styles.codeBox}>
-            <span className="rrn-link-text">{referralLink}</span>
+        <div className={CLASS_NAMES.referral.copyBlock}>
+          <div className={CLASS_NAMES.referral.copyLabel}>{referralLinkLabel}</div>
+          <div className={CLASS_NAMES.referral.copyContent} style={styles.codeBox}>
+            <span className={CLASS_NAMES.referral.linkText}>{referralLink}</span>
             <button 
-              className={`rrn-action-btn ${linkCopied ? 'rrn-copied' : ''}`}
+              className={`${CLASS_NAMES.referral.actionBtn} ${linkCopied ? CLASS_NAMES.referral.copied : ''}`}
               style={linkCopied ? styles.copyBtnSuccess : styles.outlineBtn}
               onClick={onCopyLink}
             >
@@ -90,8 +91,8 @@ const ReferralCard: React.FC<ReferralCardProps> = ({
         </div>
       )}
 
-      <div className="rrn-actions-row">
-        <button className="rrn-secondary-btn" style={styles.outlineBtn} onClick={onCopyLink}>
+      <div className={CLASS_NAMES.referral.actionsRow}>
+        <button className={CLASS_NAMES.referral.secondaryBtn} style={styles.outlineBtn} onClick={onCopyLink}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
             <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
@@ -99,7 +100,7 @@ const ReferralCard: React.FC<ReferralCardProps> = ({
           {copyLinkButtonLabel}
         </button>
         {showShareButton && (
-          <button className="rrn-primary-btn" style={styles.primaryBtn} onClick={onShare}>
+          <button className={CLASS_NAMES.referral.primaryBtn} style={styles.primaryBtn} onClick={onShare}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="18" cy="5" r="3"></circle>
               <circle cx="6" cy="12" r="3"></circle>
@@ -113,7 +114,7 @@ const ReferralCard: React.FC<ReferralCardProps> = ({
       </div>
 
       {showExpiry && expiryHours && (
-        <div className="rrn-expiry-note" style={styles.mutedText}>
+        <div className={CLASS_NAMES.referral.expiryNote} style={styles.mutedText}>
           Reward code expires in {expiryHours} hours.
         </div>
       )}

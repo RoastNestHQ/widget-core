@@ -1,4 +1,4 @@
-import { avoidElementClassName, buttonElmentClassName } from "../../../../utils/classNames";
+import { CLASS_NAMES } from '../../../../utils/classNames';
 import defaultFeedbackConfig from "../../../../core/config/defaultFeedbackConfig";
 import useFeedbackContext from "../../hooks/useFeedbackContext";
 import clsx from "clsx";
@@ -17,7 +17,7 @@ function WidgetTriggerButton() {
         return (
             <div
                 data-placement={customize?.island?.placement || defaultFeedbackConfig.island?.placement}
-                className={clsx(buttonElmentClassName, avoidElementClassName, customize?.island?.className)}
+                className={clsx(CLASS_NAMES.feedback.islandButton, CLASS_NAMES.global.avoidElement, customize?.island?.className)}
                 onClick={toggleActive}
                 data-active={active}
                 data-mode="icon"
@@ -30,7 +30,7 @@ function WidgetTriggerButton() {
     return (
         <div
             data-placement={customize?.island?.placement || defaultFeedbackConfig.island?.placement}
-            className={clsx(buttonElmentClassName, avoidElementClassName, customize?.island?.className)}
+            className={clsx(CLASS_NAMES.feedback.islandButton, CLASS_NAMES.global.avoidElement, customize?.island?.className)}
             onClick={toggleActive}
         >
             <p>{customize?.island?.label || defaultFeedbackConfig.island?.label}</p>

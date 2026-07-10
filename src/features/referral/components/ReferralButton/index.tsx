@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { avoidElementClassName, buttonElmentClassName } from '../../../../utils/classNames';
+import { CLASS_NAMES } from '../../../../utils/classNames';
 import './styles.css';
 
 interface ReferralButtonProps {
@@ -37,7 +37,7 @@ const ReferralButton: React.FC<ReferralButtonProps> = ({
 
   return (
     <div
-      className={clsx(buttonElmentClassName, avoidElementClassName, 'rrn-referral-btn')}
+      className={clsx(CLASS_NAMES.feedback.islandButton, CLASS_NAMES.global.avoidElement, CLASS_NAMES.referral.btn)}
       data-placement={position}
       data-mode={isIconOnly ? 'icon' : undefined}
       onClick={onClick}

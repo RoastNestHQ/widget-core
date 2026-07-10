@@ -1,4 +1,4 @@
-import { avoidElementClassName, buttonElmentClassName, notificationElementClassName } from "../../../utils/classNames";
+import { CLASS_NAMES } from '../../../utils/classNames';
 import { autoPlacement, autoUpdate, offset, shift, useFloating, Placement } from "@floating-ui/react";
 import defaultFeedbackConfig from "../../../core/config/defaultFeedbackConfig";
 import { useState, useEffect, useCallback, useRef } from "react";
@@ -47,7 +47,7 @@ const Notification: React.FC = () => {
 
     // Set reference element for floating UI
     useEffect(() => {
-        const element = document.querySelector(`.${buttonElmentClassName}`) as HTMLElement | null;
+        const element = document.querySelector(`.${CLASS_NAMES.feedback.islandButton}`) as HTMLElement | null;
         setReferenceElement(element);
     }, []);
 
@@ -145,7 +145,7 @@ const Notification: React.FC = () => {
             ref={refs.setFloating}
             data-placement={placement}
             style={{ ...floatingStyles, zIndex: 1000000 }}
-            className={clsx(notificationElementClassName, avoidElementClassName)}
+            className={clsx(CLASS_NAMES.global.notification, CLASS_NAMES.global.avoidElement)}
         >
             <div className="message" data-type={currentMessage?.type}>
                 {!customize?.notifications?.allowDismissal && (
