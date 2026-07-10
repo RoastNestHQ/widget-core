@@ -1,4 +1,4 @@
-import defaultRoastnestConfig from "../../../../core/config/defaultCustomize";
+import defaultFeedbackConfig from "../../../../core/config/defaultFeedbackConfig";
 import useRoastnestContext from "../../../../core/hooks/useRoastnestContext";
 import useFeedbackContext from "../../hooks/useFeedbackContext";
 import PersonManager from "../../../../core/PersonManager";
@@ -64,10 +64,10 @@ const FeedbackForm: React.FC = () => {
         if (response.success) {
             setMessage("");
             setTrackingUrl(response.trackingUrl);
-            const successMsg = customize?.form?.successMessage || defaultRoastnestConfig?.form?.successMessage;
+            const successMsg = customize?.form?.successMessage || defaultFeedbackConfig?.form?.successMessage;
             if (successMsg) toast.success(successMsg);
         } else {
-            const errorMsg = customize?.form?.errorMessage || defaultRoastnestConfig?.form?.errorMessage;
+            const errorMsg = customize?.form?.errorMessage || defaultFeedbackConfig?.form?.errorMessage;
             if (errorMsg) toast.error(errorMsg, { duration: 5000 });
         }
 
@@ -84,10 +84,10 @@ const FeedbackForm: React.FC = () => {
     const openTrackingUrl = () => trackingUrl && window.open(trackingUrl, "_blank");
 
     const messageInputPlaceholder =
-        customize?.form?.messageInput?.placeholder || defaultRoastnestConfig.form?.messageInput?.placeholder;
+        customize?.form?.messageInput?.placeholder || defaultFeedbackConfig.form?.messageInput?.placeholder;
 
-    const submitButtonLabel = customize?.form?.submitButton?.label || defaultRoastnestConfig?.form?.submitButton?.label;
-    const cancelButtonLabel = customize?.form?.cancelButton?.label || defaultRoastnestConfig?.form?.cancelButton?.label;
+    const submitButtonLabel = customize?.form?.submitButton?.label || defaultFeedbackConfig?.form?.submitButton?.label;
+    const cancelButtonLabel = customize?.form?.cancelButton?.label || defaultFeedbackConfig?.form?.cancelButton?.label;
 
     return trackingUrl ? (
         <div className={clsx("rrn-form-success")}>

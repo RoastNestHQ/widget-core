@@ -4,11 +4,11 @@ import WidgetOverlay from "./components/WidgetOverlay";
 import FeedbackPopper from "./components/FeedbackPopper";
 import Notification from "../../shared/components/Notification";
 import { RoastnestContext } from "../../core/context";
-import { RoastnestCustomizeProps, FormSubmitHandler } from "../../shared/types";
+import { FeedbackCustomizeProps, FormSubmitHandler } from "./types";
 import { FeedbackProvider } from "./FeedbackProvider";
 
 export interface FeedbackWidgetProps {
-    customize?: RoastnestCustomizeProps;
+    customize?: FeedbackCustomizeProps;
     hideIsland?: boolean;
     onFormSubmit?: FormSubmitHandler;
 }

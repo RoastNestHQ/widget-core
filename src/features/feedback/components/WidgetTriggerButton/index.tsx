@@ -1,5 +1,5 @@
 import { avoidElementClassName, buttonElmentClassName } from "../../../../utils/classNames";
-import defaultRoastnestConfig from "../../../../core/config/defaultCustomize";
+import defaultFeedbackConfig from "../../../../core/config/defaultFeedbackConfig";
 import useFeedbackContext from "../../hooks/useFeedbackContext";
 import clsx from "clsx";
 import "./styles.css";
@@ -11,12 +11,12 @@ function WidgetTriggerButton() {
 
     if (IslandHidden) return null;
 
-    const islandMode = customize?.island?.mode ?? defaultRoastnestConfig?.island?.mode;
+    const islandMode = customize?.island?.mode ?? defaultFeedbackConfig?.island?.mode;
 
     if (islandMode === "icon") {
         return (
             <div
-                data-placement={customize?.island?.placement || defaultRoastnestConfig.island?.placement}
+                data-placement={customize?.island?.placement || defaultFeedbackConfig.island?.placement}
                 className={clsx(buttonElmentClassName, avoidElementClassName, customize?.island?.className)}
                 onClick={toggleActive}
                 data-active={active}
@@ -29,11 +29,11 @@ function WidgetTriggerButton() {
 
     return (
         <div
-            data-placement={customize?.island?.placement || defaultRoastnestConfig.island?.placement}
+            data-placement={customize?.island?.placement || defaultFeedbackConfig.island?.placement}
             className={clsx(buttonElmentClassName, avoidElementClassName, customize?.island?.className)}
             onClick={toggleActive}
         >
-            <p>{customize?.island?.label || defaultRoastnestConfig.island?.label}</p>
+            <p>{customize?.island?.label || defaultFeedbackConfig.island?.label}</p>
             <div className={clsx("switch-btn", customize?.island?.switchButton?.className)} data-active={active}>
                 <span className={clsx("circle", customize?.island?.switchButton?.thumb?.className)} />
             </div>

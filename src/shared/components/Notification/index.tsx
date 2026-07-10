@@ -1,8 +1,8 @@
 import { avoidElementClassName, buttonElmentClassName, notificationElementClassName } from "../../../utils/classNames";
 import { autoPlacement, autoUpdate, offset, shift, useFloating, Placement } from "@floating-ui/react";
-import defaultRoastnestConfig from "../../../core/config/defaultCustomize";
+import defaultFeedbackConfig from "../../../core/config/defaultFeedbackConfig";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { NotificationMessage } from "../../types";
+import { NotificationMessage } from "../../../features/feedback/types";
 import useFeedbackContext from "../../../features/feedback/hooks/useFeedbackContext";
 import clsx from "clsx";
 import "./styles.css";
@@ -35,14 +35,14 @@ const Notification: React.FC = () => {
     if (IslandHidden) return null;
 
     // Use customized messages or default ones
-    const messages = customize?.notifications?.messages ?? defaultRoastnestConfig.notifications?.messages;
-    const repeatDelay = customize?.notifications?.repeatDelay ?? defaultRoastnestConfig?.notifications?.repeatDelay ?? 15;
+    const messages = customize?.notifications?.messages ?? defaultFeedbackConfig.notifications?.messages;
+    const repeatDelay = customize?.notifications?.repeatDelay ?? defaultFeedbackConfig?.notifications?.repeatDelay ?? 15;
     const displayDuration =
-        customize?.notifications?.displayDuration ?? defaultRoastnestConfig.notifications?.displayDuration ?? 5;
+        customize?.notifications?.displayDuration ?? defaultFeedbackConfig.notifications?.displayDuration ?? 5;
 
     const parmanentDismissalExpiryDays =
         customize?.notifications?.paramanentDismissalExpiryDays ??
-        defaultRoastnestConfig?.notifications?.paramanentDismissalExpiryDays ??
+        defaultFeedbackConfig?.notifications?.paramanentDismissalExpiryDays ??
         dismissalExpiryDays;
 
     // Set reference element for floating UI

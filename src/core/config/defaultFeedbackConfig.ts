@@ -1,6 +1,6 @@
-import { RoastnestCustomizeProps } from "../../shared/types";
+import { FeedbackCustomizeProps } from "../../features/feedback/types";
 
-const defaultRoastnestConfig: RoastnestCustomizeProps = {
+const defaultFeedbackConfig: FeedbackCustomizeProps = {
     form: {
         messageInput: {
             placeholder: "Don't be nice, Just Roast!",
@@ -55,4 +55,4 @@ const defaultRoastnestConfig: RoastnestCustomizeProps = {
     },
 };
 
-export default defaultRoastnestConfig;
+export default defaultFeedbackConfig;

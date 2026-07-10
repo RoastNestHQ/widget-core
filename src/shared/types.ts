@@ -38,59 +38,7 @@ export interface FormDataProps {
     screenshotBlobs: ScreenshotBlobs;
 }
 
-export interface NotificationMessage {
-    message: string; // max length 22 characters
-    type: "info" | "hint" | "offer" | "reward" | "social" | "urgent";
-}
 
-export type IslandPlacement =
-    | "left-center"
-    | "left-bottom"
-    | "right-center"
-    | "right-bottom"
-    | "bottom-left"
-    | "bottom-right";
-
-export type IslandMode = "default" | "icon";
-
-export type FormSubmitHandler = (data: FormDataProps) => Promise<boolean>;
-
-export interface RoastnestCustomizeProps {
-    form?: {
-        className?: string;
-        errorMessage?: string;
-        successMessage?: string;
-        submitButton?: { label?: string; className?: string };
-        cancelButton?: { label?: string; className?: string };
-        messageInput?: { placeholder?: string; className?: string };
-        output?: {
-            excludeFullPageScreenshot?: boolean;
-            excludeSelectedElementScreenshot?: boolean;
-        };
-    };
-    island?: {
-        mode?: IslandMode;
-        placement?: IslandPlacement;
-        className?: string;
-        label?: string;
-        switchButton?: {
-            className?: string;
-            thumb?: {
-                className?: string;
-            };
-        };
-    };
-    notifications?: {
-        enable?: boolean;
-        repeatDelay?: number;
-        displayDuration?: number;
-        repeatAllowed?: boolean;
-        allowDismissal?: boolean;
-        allowParmanentDismissal?: boolean;
-        paramanentDismissalExpiryDays?: number;
-        messages?: NotificationMessage[];
-    };
-}
 
 export interface RoastnestContextType {
     mode?: "local" | "remote";

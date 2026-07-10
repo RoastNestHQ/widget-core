@@ -1,4 +1,4 @@
-.rrn-form {
+:where(.rrn-form) {
     width: 100vw;
     padding: 16px;
     max-width: 420px;
@@ -69,7 +69,7 @@
     }
 }
 
-.rrn-form-success {
+:where(.rrn-form-success) {
     width: 100vw;
     padding: 16px;
     max-width: 320px;

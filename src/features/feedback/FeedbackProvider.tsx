@@ -2,7 +2,8 @@ import { useState, useEffect, useCallback, ReactNode } from "react";
 import html2canvas from "html2canvas-pro";
 
 import getBackgroundColor from "../../utils/getBackgroundColor";
-import { ScreenshotBlobs, SelectedElement, Size, FormSubmitHandler, RoastnestCustomizeProps } from "../../shared/types";
+import { ScreenshotBlobs, SelectedElement, Size } from "../../shared/types";
+import { FormSubmitHandler, FeedbackCustomizeProps } from "./types";
 import { FeedbackContext } from "./context";
 import { ToastProvider } from "../../shared/components/Toaster";
 
@@ -13,7 +14,7 @@ import {
     overlayElmentClassName,
     popoverElmentClassName,
 } from "../../utils/classNames";
-import defaultRoastnestConfig from "../../core/config/defaultCustomize";
+import defaultFeedbackConfig from "../../core/config/defaultFeedbackConfig";
 
 const initialSelectedValue: SelectedElement = {
     position: { x: 0, y: 0 },
@@ -23,7 +24,7 @@ const initialSelectedValue: SelectedElement = {
 
 interface FeedbackProviderProps {
     children: ReactNode;
-    customize?: RoastnestCustomizeProps;
+    customize?: FeedbackCustomizeProps;
     hideIsland?: boolean;
     onFormSubmit?: FormSubmitHandler;
 }
@@ -82,11 +83,11 @@ export function FeedbackProvider({
 
         const excludeFullPageScreenshot =
             customize?.form?.output?.excludeFullPageScreenshot ||
-            defaultRoastnestConfig?.form?.output?.excludeFullPageScreenshot ||
+            defaultFeedbackConfig?.form?.output?.excludeFullPageScreenshot ||
             false;
         const excludeSelectedElementScreenshot =
             customize?.form?.output?.excludeSelectedElementScreenshot ||
-            defaultRoastnestConfig?.form?.output?.excludeSelectedElementScreenshot ||
+            defaultFeedbackConfig?.form?.output?.excludeSelectedElementScreenshot ||
             false;
 
         const targetAttr = "data-screenshot-target";
