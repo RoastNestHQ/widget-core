@@ -131,7 +131,12 @@ export function FeedbackProvider({
     };
 
     useEffect(() => {
-        if (!active) return;
+        if (!active) {
+            document.body.classList.remove("rrn-feedback-active");
+            return;
+        }
+        
+        document.body.classList.add("rrn-feedback-active");
 
         const handleResize = () => {
             setWindowSize({
@@ -146,6 +151,7 @@ export function FeedbackProvider({
         window.addEventListener("scroll", handleScroll);
         window.addEventListener("resize", handleResize);
         return () => {
+            document.body.classList.remove("rrn-feedback-active");
             window.removeEventListener("resize", handleResize);
             window.removeEventListener("scroll", handleScroll);
         };

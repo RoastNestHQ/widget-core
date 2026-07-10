@@ -9,3 +9,8 @@
   align-items: center;
   margin: 16px !important;
 }
+
+body.rrn-feedback-active .rrn-referral-btn,
+body.rrn-feedback-active .rrn-referral-backdrop {
+  display: none !important;
+}

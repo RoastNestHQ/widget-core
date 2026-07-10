@@ -43,6 +43,7 @@ const ReferralButton: React.FC<ReferralButtonProps> = ({
       onClick={onClick}
       style={style}
       aria-label={label || "Open referral popup"}
+      data-html2canvas-ignore="true"
     >
       {!isTextOnly && (icon ? icon : defaultIcon)}
       {!isIconOnly && label && (

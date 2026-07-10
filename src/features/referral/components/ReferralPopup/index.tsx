@@ -36,6 +36,7 @@ const ReferralPopup: React.FC<ReferralPopupProps> = ({
       className={`rrn-referral-backdrop ${isOpen ? 'rrn-open' : 'rrn-closed'}`} 
       style={backdropStyle}
       onClick={closeOnBackdropClick ? onClose : undefined}
+      data-html2canvas-ignore="true"
     >
       <div 
         className={`rrn-referral-modal ${isOpen ? 'rrn-open' : 'rrn-closed'}`} 
