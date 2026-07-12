@@ -67,9 +67,7 @@ export interface ReferralTheme {
   fontFamily?: string;
 }
 
-export interface ReferralWidgetProps {
-  referralLink: `http://${string}` | `https://${string}`;
-
+export interface BaseReferralWidgetProps {
   // CONTENT
   appName?: string;
   appIcon?: React.ReactNode;
@@ -114,7 +112,6 @@ export interface ReferralWidgetProps {
   onShare?: (projectId: string) => void;
   onMount?: (projectId: string) => void;
   onConversionTracked?: (event: ConversionEvent) => void;
-  onEvent?: (payload: ReferralEventPayload) => Promise<void> | void;
 
   // ADVANCED
   visible?: boolean;
@@ -135,3 +132,17 @@ export interface ReferralWidgetProps {
     onShare: () => void;
   }) => React.ReactNode;
 }
+
+export type ReferralWidgetProps = BaseReferralWidgetProps & (
+  | {
+      mode?: "cloud";
+      referralLink?: never;
+      rewardAmount?: never;
+      onEvent?: (payload: ReferralEventPayload) => Promise<void> | void;
+    }
+  | {
+      mode: "self-hosted";
+      referralLink: `http://${string}` | `https://${string}`;
+      onEvent: (payload: ReferralEventPayload) => Promise<void> | void;
+    }
+);

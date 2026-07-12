@@ -2,13 +2,14 @@ import { CLASS_NAMES } from "../../../../utils/classNames";
 import React from "react";
 import "./styles.css";
 import { StyleMap } from "../ReferralWidget/styles";
-import { ReferralWidgetProps } from "../ReferralWidget/types";
+import { BaseReferralWidgetProps } from "../ReferralWidget/types";
 
-interface ReferralCardProps extends ReferralWidgetProps {
+interface ReferralCardProps extends BaseReferralWidgetProps {
 	styles: StyleMap;
 	linkCopied: boolean;
 	onCopyLink: () => void;
 	onShare: () => void;
+	referralLink?: string;
 }
 
 const ReferralCard: React.FC<ReferralCardProps> = ({

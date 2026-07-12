@@ -5,6 +5,7 @@ import { DEFAULT_WIDGET_PROPS } from "./defaults";
 import { buildStyles } from "./styles";
 import { useReferralWidget } from "../../hooks/useReferralWidget";
 import { initializeReferralAPI } from "../../hooks/useReferral";
+import { ReferralAPI } from "../../ReferralAPI";
 import ReferralButton from "../ReferralButton";
 import ReferralPopup from "../ReferralPopup";
 import ReferralCard from "../ReferralCard";
@@ -12,39 +13,95 @@ import ReferralCard from "../ReferralCard";
 export const ReferralWidget: React.FC<ReferralWidgetProps> = (userProps) => {
 	const context = useContext(RoastnestContext);
 	const effectiveProjectId = context?.projectId;
+	const mode = userProps.mode || context?.mode || "cloud";
+
+	const [cloudData, setCloudData] = React.useState<any>(null);
+	const [isLoadingCloud, setIsLoadingCloud] = React.useState(mode === "cloud");
+
+	useEffect(() => {
+		if (mode === "cloud" && effectiveProjectId) {
+			const api = ReferralAPI.create({
+				projectId: effectiveProjectId,
+				mode: "cloud",
+				enabled: true,
+			});
+			const visitorId = api.getVisitorId();
+
+			setIsLoadingCloud(true);
+			fetch(`https://api.roastnest.com/referrals/setup?projectId=${effectiveProjectId}&visitorId=${visitorId}`)
+				.then((res) => {
+					if (!res.ok) throw new Error("Failed to fetch referral setup");
+					return res.json();
+				})
+				.then((data) => {
+					setCloudData(data);
+				})
+				.catch((err) => {
+					console.error("Roastnest Referral SDK: Error fetching cloud referral setup:", err);
+				})
+				.finally(() => {
+					setIsLoadingCloud(false);
+				});
+		}
+	}, [mode, effectiveProjectId]);
 
 	if (!effectiveProjectId) {
 		console.error("Roastnest Referral SDK: projectId is required via RoastnestProvider");
 		return null;
 	}
 
-	let finalCode = localStorage.getItem("roastnest_my_referral_code") || "";
-	if (!finalCode) {
-		finalCode = Math.random().toString(36).substring(2, 10).toUpperCase();
-		localStorage.setItem("roastnest_my_referral_code", finalCode);
+	if (isLoadingCloud) {
+		return null;
 	}
 
-	let finalLink = userProps.referralLink;
+	let finalCode = "";
+	let finalLink = "";
 	let hasError = false;
 
-	if (finalLink && typeof window !== "undefined") {
-		try {
-			const url = new URL(finalLink);
-			if (!url.hostname) throw new Error("Invalid URL");
+	if (mode === "cloud") {
+		if (!cloudData) {
+			console.error("Roastnest Referral SDK: Cloud referral setup could not be loaded.");
+			return null;
+		}
+		finalCode = cloudData.referralCode;
+		finalLink = cloudData.referralLink;
+	} else {
+		finalCode = localStorage.getItem("roastnest_my_referral_code") || "";
+		if (!finalCode) {
+			finalCode = Math.random().toString(36).substring(2, 10).toUpperCase();
+			localStorage.setItem("roastnest_my_referral_code", finalCode);
+		}
 
-			if (url.hostname !== window.location.hostname) {
-				console.error(
-					`Roastnest Referral SDK: referralLink domain (${url.hostname}) must match the current website domain (${window.location.hostname}).`,
-				);
-				hasError = true;
-			} else {
-				url.searchParams.set("ref", finalCode);
-				finalLink = url.toString() as `http://${string}` | `https://${string}`;
+		if (!userProps.referralLink) {
+			console.error("Roastnest Referral SDK: referralLink is required in self-hosted mode");
+			hasError = true;
+		} else {
+			finalLink = userProps.referralLink;
+			if (typeof window !== "undefined") {
+				try {
+					const url = new URL(finalLink);
+					if (!url.hostname) throw new Error("Invalid URL");
+
+					if (url.hostname !== window.location.hostname) {
+						console.error(
+							`Roastnest Referral SDK: referralLink domain (${url.hostname}) must match the current website domain (${window.location.hostname}).`,
+						);
+						hasError = true;
+					} else {
+						url.searchParams.set("ref", finalCode);
+						finalLink = url.toString() as `http://${string}` | `https://${string}`;
+					}
+				} catch (err: any) {
+					console.error(
+						"Roastnest Referral SDK: referralLink must be an absolute URL containing a domain (e.g., https://example.com/invite).",
+					);
+					hasError = true;
+				}
 			}
-		} catch (err: any) {
-			console.error(
-				"Roastnest Referral SDK: referralLink must be an absolute URL containing a domain (e.g., https://example.com/invite).",
-			);
+		}
+
+		if (!userProps.onEvent) {
+			console.error("Roastnest Referral SDK: onEvent callback is required in self-hosted mode to track conversions.");
 			hasError = true;
 		}
 	}
@@ -56,14 +113,15 @@ export const ReferralWidget: React.FC<ReferralWidgetProps> = (userProps) => {
 	const props = {
 		...DEFAULT_WIDGET_PROPS,
 		...userProps,
+		...(mode === "cloud" ? cloudData : {}),
 		projectId: effectiveProjectId,
 		referralCode: finalCode,
 		referralLink: finalLink,
-	} as ReferralWidgetProps & { projectId: string; referralCode: string; referralLink: string };
+	} as ReferralWidgetProps & { projectId: string; referralCode: string; referralLink: string; onEvent?: any };
 
 	initializeReferralAPI({
 		projectId: effectiveProjectId,
-		mode: context?.mode || "cloud",
+		mode: mode,
 		enabled: true,
 		onEvent: props.onEvent,
 	});

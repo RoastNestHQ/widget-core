@@ -55,6 +55,17 @@ yarn add @roastnest/react
 
 To initialize the SDK, wrap your application inside the `RoastnestProvider` component.
 
+### Compile-time Mandatory Props by Mode
+
+You can enforce compile-time typings on both `<FeedbackWidget>` and `<ReferralWidget>` by passing the `mode` prop directly to them. This ensures you do not miss mandatory props:
+
+- **Self-Hosted Mode**:
+  - `<FeedbackWidget>` requires `onFormSubmit` (custom form handler) and optionally accepts `customize`.
+  - `<ReferralWidget>` requires `referralLink` (absolute URL matching your hostname) and `onEvent` (custom event tracking callback). It accepts all custom content, theme, buttons, and copying props.
+- **Cloud Mode**:
+  - All content, customization, and submission/event callbacks are loaded directly from the Roastnest Cloud server.
+  - Specifying customization props (`customize`, `onFormSubmit` for feedback; or `appName`, `theme`, `referralLink`, `onEvent`, etc. for referrals) is strictly **forbidden** at compile-time to prevent configurations from conflicting with the server-defined settings. Only advanced state controls (like `visible`, `defaultOpen`, `closeOnBackdropClick`) are allowed. 
+
 ```tsx
 import React from "react";
 import { RoastnestProvider } from "@roastnest/react";
@@ -156,11 +167,9 @@ function InvitePage() {
 
 ### Auto-generated Referral Links & Validation
 
-> [!IMPORTANT]
-> The SDK automatically generates a secure unique referral code for each user and stores it persistently in the browser's `localStorage` (e.g. `roastnest_my_referral_code`).
-
-- **Auto-Appending Parameter**: When you provide `referralLink="https://myapp.com/invite"`, the SDK will automatically append the generated referral code as a query param (e.g., `https://myapp.com/invite?ref=AYUSH123`).
-- **Domain Matching**: For safety, the domain of the `referralLink` must match `window.location.hostname`. If they do not match, the widget will log a `console.error` and degrade gracefully by returning `null` to avoid breaking the user's webpage.
+- **Auto-Generated Referrals**: In `self-hosted` mode, the SDK automatically generates a secure unique referral code for each user and stores it persistently in the browser's `localStorage` (e.g. `roastnest_my_referral_code`). In `cloud` mode, both the referral code and referral link are fetched directly from the Roastnest cloud server on mount.
+- **Auto-Appending Parameter**: In `self-hosted` mode, when you provide `referralLink="https://myapp.com/invite"`, the SDK will automatically append the generated referral code as a query param (e.g., `https://myapp.com/invite?ref=AYUSH123`).
+- **Domain Matching**: For safety in `self-hosted` mode, the domain of the `referralLink` must match `window.location.hostname`. If they do not match, the widget will log a `console.error` and degrade gracefully by returning `null` to avoid breaking the user's webpage. Domain matching is not required in `cloud` mode since configurations are pre-validated on your Roastnest dashboard.
 
 ### useReferral Hook & Conversion Tracking
 To track successful referral conversions (e.g., a friend signed up, subscribed, or performed an action), use the headless hook `useReferral`:
