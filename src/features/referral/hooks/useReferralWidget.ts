@@ -4,9 +4,8 @@ import { ReferralWidgetProps } from "../components/ReferralWidget/types";
 /**
  * Widget state hook.
  */
-export function useReferralWidget(props: ReferralWidgetProps & { projectId: string }) {
+export function useReferralWidget(props: ReferralWidgetProps & { projectId: string; referralCode: string; referralLink: string; }) {
   const [isOpen, setIsOpen] = useState(!!props.defaultOpen || !!props.visible);
-  const [codeCopied, setCodeCopied] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
 
   const open = useCallback(() => {
@@ -18,17 +17,6 @@ export function useReferralWidget(props: ReferralWidgetProps & { projectId: stri
     setIsOpen(false);
     props.onClose?.();
   }, [props.onClose]);
-
-  const copyCode = useCallback(async () => {
-    try {
-      await navigator.clipboard.writeText(props.referralCode);
-      setCodeCopied(true);
-      props.onCodeCopied?.(props.referralCode, props.projectId!);
-      setTimeout(() => setCodeCopied(false), props.copySuccessDuration || 2000);
-    } catch (err) {
-      console.error("Failed to copy code", err);
-    }
-  }, [props.referralCode, props.projectId, props.onCodeCopied, props.copySuccessDuration]);
 
   const copyLink = useCallback(async () => {
     try {
@@ -44,7 +32,7 @@ export function useReferralWidget(props: ReferralWidgetProps & { projectId: stri
   const share = useCallback(async () => {
     props.onShare?.(props.projectId!);
     
-    const text = props.shareMessage || `Join me on ${props.appName || 'this app'}! Use my code: ${props.referralCode}`;
+    const text = props.shareMessage || `Join me on ${props.appName || 'this app'}!`;
     const shareData = {
       title: `${props.appName || 'App'} Referral`,
       text,
@@ -65,11 +53,9 @@ export function useReferralWidget(props: ReferralWidgetProps & { projectId: stri
 
   return {
     isOpen: props.visible !== undefined ? props.visible : isOpen,
-    codeCopied,
     linkCopied,
     open,
     close,
-    copyCode,
     copyLink,
     share
   };

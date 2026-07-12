@@ -4,7 +4,7 @@ export interface ReferralConfig {
   projectId: string;
   enabled: boolean;
   mode: "cloud" | "self-hosted";
-  endpoint?: string;
+  onEvent?: (payload: ReferralEventPayload) => Promise<void> | void;
   queryParam?: string;
   cookieDurationDays?: number;
 }
@@ -68,10 +68,7 @@ export interface ReferralTheme {
 }
 
 export interface ReferralWidgetProps {
-  // REQUIRED
-  referralCode: string;
-  referralLink: string;
-
+  referralLink: `http://${string}` | `https://${string}`;
 
   // CONTENT
   appName?: string;
@@ -113,11 +110,11 @@ export interface ReferralWidgetProps {
   // CALLBACKS
   onOpen?: () => void;
   onClose?: () => void;
-  onCodeCopied?: (code: string, projectId: string) => void;
   onLinkCopied?: (link: string, projectId: string) => void;
   onShare?: (projectId: string) => void;
   onMount?: (projectId: string) => void;
   onConversionTracked?: (event: ConversionEvent) => void;
+  onEvent?: (payload: ReferralEventPayload) => Promise<void> | void;
 
   // ADVANCED
   visible?: boolean;
@@ -134,7 +131,6 @@ export interface ReferralWidgetProps {
     code: string;
     link: string;
     projectId: string;
-    onCopyCode: () => void;
     onCopyLink: () => void;
     onShare: () => void;
   }) => React.ReactNode;

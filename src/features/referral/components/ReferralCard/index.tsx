@@ -6,7 +6,6 @@ import { ReferralWidgetProps } from "../ReferralWidget/types";
 
 interface ReferralCardProps extends ReferralWidgetProps {
 	styles: StyleMap;
-	codeCopied: boolean;
 	linkCopied: boolean;
 	onCopyLink: () => void;
 	onShare: () => void;

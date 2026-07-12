@@ -4,18 +4,20 @@ import { ReferralAPI } from "../ReferralAPI";
 
 let apiInstance: ReferralAPI | null = null;
 
-/**
- * Main headless hook for open-source users to manage referral state and tracking.
- */
-export function useReferral(config: ReferralConfig) {
+export function initializeReferralAPI(config: ReferralConfig) {
   if (!apiInstance || apiInstance.getConfig().projectId !== config.projectId) {
     apiInstance = ReferralAPI.create(config);
     apiInstance.initialize();
   }
+}
 
-  const [referralData, setReferralData] = useState<ReferralData | null>(apiInstance.get());
+/**
+ * Main headless hook for open-source users to manage referral state and tracking.
+ */
+export function useReferral() {
+  const [referralData, setReferralData] = useState<ReferralData | null>(apiInstance?.get() || null);
   const [isTracking, setIsTracking] = useState(false);
-  const [queuedEvents, setQueuedEvents] = useState<QueuedEvent[]>(apiInstance.getQueuedEvents());
+  const [queuedEvents, setQueuedEvents] = useState<QueuedEvent[]>(apiInstance?.getQueuedEvents() || []);
 
   // Subscribe to changes if we had an event emitter, but for now we'll sync on mount
   useEffect(() => {
@@ -23,10 +25,13 @@ export function useReferral(config: ReferralConfig) {
       setReferralData(apiInstance.get());
       setQueuedEvents(apiInstance.getQueuedEvents());
     }
-  }, [config.projectId]);
+  }, []);
 
   const trackConversion = async (event: ConversionEvent) => {
-    if (!apiInstance) return;
+    if (!apiInstance) {
+      console.warn("Roastnest: ReferralAPI not initialized. Ensure ReferralWidget is rendered.");
+      return;
+    }
     setIsTracking(true);
     try {
       await apiInstance.trackConversion(event);
@@ -54,14 +59,14 @@ export function useReferral(config: ReferralConfig) {
     referralCode: referralData?.code || null,
     referralData,
     hasReferral: !!referralData,
-    visitorId: apiInstance.getVisitorId(),
-    sessionId: apiInstance.getSessionId(),
-    projectId: config.projectId,
+    visitorId: apiInstance?.getVisitorId() || "",
+    sessionId: apiInstance?.getSessionId() || "",
+    projectId: apiInstance?.getProjectId() || "",
     isTracking,
     queuedEvents,
     trackConversion,
     clearReferral,
     retryQueue,
-    getConfig: () => apiInstance!.getConfig(),
+    getConfig: () => apiInstance?.getConfig(),
   };
 }

@@ -12,7 +12,8 @@
     "clean": "rimraf dist",
     "dev": "rollup -c --bundleConfigAsCjs --watch",
     "build-dev": "yarn clean && rollup -c --bundleConfigAsCjs",
-    "build-pro": "yarn clean && rollup -c --bundleConfigAsCjs --environment NODE_ENV:production"
+    "build-pro": "yarn clean && rollup -c --bundleConfigAsCjs --environment NODE_ENV:production",
+    "typecheck": "tsc --noEmit"
   },
   "files": [
     "dist"

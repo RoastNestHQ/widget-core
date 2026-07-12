@@ -48,7 +48,7 @@ export class ReferralAPI {
     }
 
     const transport = config.mode === "self-hosted"
-      ? new SelfHostedTransport(config.endpoint!)
+      ? new SelfHostedTransport(config.onEvent)
       : new CloudTransport();
 
     return new ReferralAPI(config, {
@@ -160,6 +160,8 @@ export class ReferralAPI {
     if (!this.config.enabled) return;
 
     const refData = this.get();
+    if (!refData || !refData.code) return;
+
     const payload: ReferralEventPayload = {
       projectId: this.config.projectId,
       referralCode: refData?.code || "",
