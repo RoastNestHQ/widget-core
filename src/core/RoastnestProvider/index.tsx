@@ -5,7 +5,7 @@ import { User, RoastnestProviderProps } from "../../shared/types";
 function Provider({
     projectId,
     children,
-    mode = "remote",
+    mode = "cloud",
 }: RoastnestProviderProps) {
     const [userData, setUserData] = useState<User | undefined>(undefined);
 

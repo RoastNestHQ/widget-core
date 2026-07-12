@@ -40,7 +40,7 @@ const FeedbackForm: React.FC = () => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
-        if (mode === "local" && onFormSubmit instanceof Function) {
+        if (mode === "self-hosted" && onFormSubmit instanceof Function) {
             setLoading(true);
             const isSubmitted = await onFormSubmit({ message, screenshotBlobs });
             if (isSubmitted) {

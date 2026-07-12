@@ -61,10 +61,9 @@ export const ReferralWidget: React.FC<ReferralWidgetProps> = (userProps) => {
 		referralLink: finalLink,
 	} as ReferralWidgetProps & { projectId: string; referralCode: string; referralLink: string };
 
-	// Initialize ReferralAPI here!
 	initializeReferralAPI({
 		projectId: effectiveProjectId,
-		mode: context?.mode === "local" ? "self-hosted" : "cloud",
+		mode: context?.mode || "cloud",
 		enabled: true,
 		onEvent: props.onEvent,
 	});

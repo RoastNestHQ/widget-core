@@ -41,7 +41,7 @@ export interface FormDataProps {
 
 
 export interface RoastnestContextType {
-    mode?: "local" | "remote";
+    mode?: "self-hosted" | "cloud";
     userData?: User;
     projectId?: string;
     setUser: (user: User) => void;
@@ -54,13 +54,13 @@ export interface BaseRoastnestProviderProps {
 }
 
 export interface LocalRoastnestProviderProps extends BaseRoastnestProviderProps {
-    mode: "local";
+    mode: "self-hosted";
     projectId?: string;
 }
 
 export interface RemoteRoastnestProviderProps extends BaseRoastnestProviderProps {
     projectId: string;
-    mode?: "remote";
+    mode?: "cloud";
 }
 
 export type RoastnestProviderProps = LocalRoastnestProviderProps | RemoteRoastnestProviderProps;
