@@ -39,7 +39,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RoastNestHQ/widget-core.git"
+    "url": "git+https://github.com/RoastNestHQ/react-widget.git"
   },
   "keywords": [
     "react",
